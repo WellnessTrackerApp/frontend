@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap");
+@import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+
+@theme {
+  --color-components-main: var(--color-gray-700);
+  --color-subcomponents-main: var(--color-gray-600);
+  --color-subcomponents-main-hover: var(--color-gray-500);
+  --color-subcomponents-text-main: var(--color-gray-400);
+  --color-approve-button-main: var(--color-blue-500);
+  --color-hover-approve-button-main: var(--color-blue-400);
+  --color-primary: #3780f6;
+  --color-primary-hover: #2563eb;
+  --color-action-blue: #3b82f6;
+  --color-background-secondary: #1f2937;
+  --color-text-muted: #8fa6cc;
+  --color-surface-border: #374151;
+  --color-accent-teal: #14b8a6;
+
+  /* dark mode */
+  --color-background-dark: #121926;
+  --color-card-dark: #182334;
+  --color-input-dark: #101723;
+  --color-border-dark: #1d293d;
+
+  /* light mode */
+  --color-background-light: #f5f7fa;
+  --color-card-light: #ffffff;
+  --color-input-light: #f6f8fc;
+  --color-selection-light: #f0f4f9;
+  --color-input-light-hover: #e8ecf1;
+  --color-border-light: #cbd5e0;
+
+  --background-image-light-grid-pattern:
+    linear-gradient(to right, #cbd5e099 1px, transparent 1px),
+    linear-gradient(to bottom, #cbd5e099 1px, transparent 1px);
+
+  --background-image-dark-grid-pattern:
+    linear-gradient(to right, #314158 1px, transparent 1px),
+    linear-gradient(to bottom, #314158 1px, transparent 1px);
+
+  /* Fonts */
+  --font-display: "Inter";
+
+  /* Animations */
+  @keyframes pulse-custom {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes progress {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(300%);
+    }
+  }
+
+  --animate-skeleton: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+}
+
+@utility no-spinner {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  & {
+    -moz-appearance: textfield;
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
