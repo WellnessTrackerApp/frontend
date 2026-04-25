@@ -5,24 +5,32 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import {
   FaArrowRight,
+  FaCalendar,
   FaDumbbell,
   FaEnvelope,
   FaEye,
   FaEyeSlash,
   FaLock,
+  FaMars,
+  FaRulerVertical,
   FaUser,
+  FaVenus,
+  FaWeight,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import AuthToggleTabs from "../components/AuthToggleTabs";
 import Button from "../components/ui/Button";
 import {
+  gymSignUp,
   signIn,
+  type SignUpRequest as GymSignUpRequest,
   type SignInRequest,
   type SignInResponse,
-  signUp,
-  type SignUpRequest,
 } from "../services/gym/authService";
-import { type ErrorResponse, type GeneralResponse } from "../types/ApiResponse";
+import type { SignUpRequest as HealthSignUpRequest } from "../services/health/authService";
+import { healthSignUp } from "../services/health/authService";
+import { healthDeleteUser } from "../services/health/userService";
+import { type ErrorResponse } from "../types/ApiResponse";
 import { type RegisterLoginForm } from "../types/AuthForms";
 
 const RegisterLogin = () => {
@@ -40,21 +48,40 @@ const RegisterLogin = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    birthDate: new Date().toISOString().split("T")[0],
+    height: "",
+    weight: "",
+    gender: "MALE",
   });
 
-  const signUpMutation = useMutation<
-    GeneralResponse,
-    AxiosError<ErrorResponse>,
-    SignUpRequest
-  >({
-    mutationFn: signUp,
+  const signUpMutation = useMutation({
+    mutationFn: async ({
+      healthSignUpRequest,
+      gymSignUpRequest,
+    }: {
+      healthSignUpRequest: HealthSignUpRequest;
+      gymSignUpRequest: GymSignUpRequest;
+    }) => {
+      await healthSignUp(healthSignUpRequest);
+
+      try {
+        await gymSignUp(gymSignUpRequest);
+      } catch (error) {
+        await healthDeleteUser();
+        throw error;
+      }
+    },
     onSuccess: () => {
       toast.success(t("toastMessages.signUpSuccessful"));
       setIsRegister(false);
     },
-    onError: (error: AxiosError<ErrorResponse>) => {
+    onError: (error: AxiosError<ErrorResponse | string>) => {
       if (error.response) {
-        toast.error(error.response.data.message);
+        if (typeof error.response.data === "string") {
+          toast.error(error.response.data);
+        } else {
+          toast.error(error.response.data.message);
+        }
       } else {
         toast.error(
           t("toastMessages.signUpFailed", { errorMessage: error.message }),
@@ -73,6 +100,8 @@ const RegisterLogin = () => {
       toast.success(t("toastMessages.signInSuccessful"));
       localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("refreshToken", response.refreshToken);
+      localStorage.setItem("username", response.username); // TODO store data in a more secure way
+      localStorage.setItem("password", formData.password); // TODO store data in a more secure way
       navigate("/", { replace: true });
     },
     onError: (error: AxiosError<ErrorResponse>) => {
@@ -120,15 +149,31 @@ const RegisterLogin = () => {
     if (formData.password !== formData.confirmPassword) {
       toast.error(t("toastMessages.confirmPasswordMatchingError"));
       return;
+    } else if (formData.height === "" || formData.weight === "") {
+      toast.error(t("toastMessages.heightWeightRequiredError"));
+      return;
     }
 
-    const data: SignUpRequest = {
+    const gymSignUpRequest: GymSignUpRequest = {
       username: formData.username,
       email: formData.email,
       password: formData.password,
     };
 
-    signUpMutation.mutate(data);
+    const healthSignUpRequest: HealthSignUpRequest = {
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+      birthDate: formData.birthDate + "T00:00:00Z",
+      height: formData.height as number,
+      weight: formData.weight as number,
+      gender: formData.gender.toUpperCase(),
+    };
+
+    signUpMutation.mutate({
+      healthSignUpRequest,
+      gymSignUpRequest,
+    });
   };
 
   return (
@@ -154,7 +199,7 @@ const RegisterLogin = () => {
             className="bg-card-light dark:bg-card-dark border dark:border-border-dark border-border-light rounded-2xl rounded-t-none shadow-2xl overflow-hidden"
             onSubmit={isRegister ? handleSignUp : handleSignIn}
           >
-            <div className="p-6 pt-8 space-y-5">
+            <div className="p-6 pt-8 space-y-5 max-h-105 scrollbar hover:scrollbar overflow-y-auto scrollbar-thumb-scrollbar-thumb-light scrollbar-track-scrollbar-track-light dark:scrollbar-thumb-scrollbar-thumb-dark dark:scrollbar-track-scrollbar-track-dark">
               {isRegister && (
                 <div className="space-y-2">
                   <label className="block text-sm font-medium">
@@ -236,28 +281,137 @@ const RegisterLogin = () => {
               </div>
 
               {isRegister && (
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label className="block text-sm font-medium">
-                      {t("confirmPasswordLabel")}
-                    </label>
-                  </div>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FaLock className="text-text-muted text-[20px]" />
+                <>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-sm font-medium">
+                        {t("confirmPasswordLabel")}
+                      </label>
                     </div>
-                    <input
-                      className={inputStyling}
-                      id="confirm-password"
-                      name="confirmPassword"
-                      type="password"
-                      placeholder="********"
-                      value={formData.confirmPassword}
-                      onChange={handleFormChange}
-                      required
-                    />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <FaLock className="text-text-muted text-[20px]" />
+                      </div>
+                      <input
+                        className={inputStyling}
+                        id="confirm-password"
+                        name="confirmPassword"
+                        type="password"
+                        placeholder="********"
+                        value={formData.confirmPassword}
+                        onChange={handleFormChange}
+                        required
+                      />
+                    </div>
                   </div>
-                </div>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium">
+                      {t("birthDateLabel")}
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <FaCalendar className="text-text-muted text-[20px]" />
+                      </div>
+                      <input
+                        className={`${inputStyling} [&::-webkit-calendar-picker-indicator]:hidden`}
+                        id="birthdate"
+                        name="birthDate"
+                        type="date"
+                        value={formData.birthDate}
+                        onChange={handleFormChange}
+                        onClick={(e) => {
+                          e.currentTarget.showPicker();
+                        }}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium">
+                      {t("heightLabel")}
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <FaRulerVertical className="text-text-muted text-[20px]" />
+                      </div>
+                      <input
+                        className={`${inputStyling} [&::-webkit-inner-spin-button]:hidden`}
+                        id="height"
+                        name="height"
+                        type="number"
+                        min={50}
+                        max={300}
+                        placeholder={"0 cm"}
+                        value={formData.height}
+                        onChange={handleFormChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium">
+                      {t("weightLabel")}
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <FaWeight className="text-text-muted text-[20px]" />
+                      </div>
+                      <input
+                        className={`${inputStyling} [&::-webkit-inner-spin-button]:hidden`}
+                        id="weight"
+                        name="weight"
+                        type="number"
+                        min={40}
+                        max={500}
+                        placeholder={"0 kg"}
+                        value={formData.weight}
+                        onChange={handleFormChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium">
+                      {t("genderLabel")}
+                    </label>
+                    <div className="flex gap-4">
+                      {["MALE", "FEMALE"].map((gender) => (
+                        <label key={gender} className="relative cursor-pointer">
+                          <input
+                            type="radio"
+                            name="gender"
+                            value={gender}
+                            checked={formData.gender === gender}
+                            onChange={handleFormChange}
+                            className="peer sr-only"
+                          />
+
+                          <div
+                            className="flex flex-col items-center justify-center px-3 py-2 rounded-lg border 
+                                      bg-input-light dark:bg-input-dark 
+                                      border-border-light/30 dark:border-border-dark
+                                      text-text-muted transition-all duration-200
+                                      hover:border-primary/50
+                                      peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary
+                                        peer-focus-visible:ring-2 peer-focus-visible:ring-primary"
+                          >
+                            <span className="text-sm font-medium">
+                              {gender == "MALE" ? (
+                                <span className="flex items-center gap-1">
+                                  <FaMars className="text-xl" /> Male
+                                </span>
+                              ) : (
+                                <span className="flex items-center gap-1">
+                                  <FaVenus className="text-xl" /> Female
+                                </span>
+                              )}
+                            </span>
+                          </div>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
             </div>
 

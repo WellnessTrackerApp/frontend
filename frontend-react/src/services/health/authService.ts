@@ -8,16 +8,18 @@ export interface SignUpRequest {
   birthDate: string;
   height: number;
   weight: number;
-  gender: "MALE" | "FEMALE" | "OTHER";
+  gender: string;
 }
 
 export interface SignUpResponse {
   message: string;
 }
 
-export const signUp = async (data: SignUpRequest): Promise<GeneralResponse> => {
+export const healthSignUp = async (
+  data: SignUpRequest,
+): Promise<GeneralResponse> => {
   const response = await healthPublicApi.post<GeneralResponse>(
-    "/auth/sign-up",
+    "/register",
     data,
   );
   return response.data;

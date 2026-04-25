@@ -26,7 +26,9 @@ export const signIn = async (data: SignInRequest): Promise<SignInResponse> => {
   return response.data;
 };
 
-export const signUp = async (data: SignUpRequest): Promise<GeneralResponse> => {
+export const gymSignUp = async (
+  data: SignUpRequest,
+): Promise<GeneralResponse> => {
   const response = await gymPublicApi.post<GeneralResponse>(
     "/auth/sign-up",
     data,

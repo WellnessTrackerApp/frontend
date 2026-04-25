@@ -125,6 +125,10 @@
   "settingsTitle": "Ustawienia",
   "settingsDescription": "Uprość swój profil i skup się na treningu",
   "accountInformation": "Informacje o koncie",
+  "birthDateLabel": "Data urodzenia",
+  "heightLabel": "Wzrost",
+  "weightLabel": "Waga",
+  "genderLabel": "Płeć",
   "memberSince": "Członek od: {{date, date(fmt: d MMMM yyyy)}}",
   "editProfile": "Edytuj profil",
   "changePassword": "Zmień hasło",
@@ -208,7 +212,8 @@
     "exerciseNameRequired": "Nazwa ćwiczenia jest wymagana",
     "customRestTimerInvalidRangeMessage": "Licznik odpoczynku musi być między 1 a 3600 sekund",
     "sessionExpiredMessage": "Sesja wygasła. Zaloguj się ponownie",
-    "confirmPasswordMatchingError": "Potwierdzenie hasła musi być takie samo jak hasło"
+    "confirmPasswordMatchingError": "Potwierdzenie hasła musi być takie samo jak hasło",
+    "heightWeightRequiredError": "Wzrost i waga są wymagane"
   },
   "exerciseCategories": {
     "arms": "RAMIONA",

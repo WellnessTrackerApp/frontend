@@ -116,6 +116,10 @@
   "settingsTitle": "Settings",
   "settingsDescription": "Keep your profile simple and your focus on the gym",
   "accountInformation": "Account Information",
+  "birthDateLabel": "Date of Birth",
+  "heightLabel": "Height",
+  "weightLabel": "Weight",
+  "genderLabel": "Gender",
   "memberSince": "Member since {{date, date(fmt: dd MMMM yyyy)}}",
   "editProfile": "Edit Profile",
   "changePassword": "Change Password",
@@ -199,7 +203,8 @@
     "exerciseNameRequired": "Exercise name is required",
     "customRestTimerInvalidRangeMessage": "Custom rest timer must be between 1 and 3600 seconds",
     "sessionExpiredMessage": "Session expired. Please log in again",
-    "confirmPasswordMatchingError": "Confirm password must match the password"
+    "confirmPasswordMatchingError": "Confirm password must match the password",
+    "heightWeightRequiredError": "Height and weight are required"
   },
   "exerciseCategories": {
     "arms": "ARMS",
