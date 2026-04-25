@@ -3,7 +3,7 @@ import type {
   WorkoutResponse,
   WorkoutSessionSnapshot,
   WorkoutTrainingHistoryResponse,
-} from "../services/workoutService";
+} from "../services/gym/workoutService";
 
 export const calculateWorkoutVolume = (workout: WorkoutResponse) => {
   if (!workout.workoutItems) return 0;

@@ -1,10 +1,10 @@
 import type { TFunction } from "i18next";
-import type { ExerciseResponse } from "../services/exerciseService";
-import type { PlanResponse } from "../services/trainingService";
+import type { ExerciseResponse } from "../services/gym/exerciseService";
+import type { PlanResponse } from "../services/gym/trainingService";
 import type {
   WorkoutRepetitionItemResponse,
   WorkoutResponse,
-} from "../services/workoutService";
+} from "../services/gym/workoutService";
 
 export const transformExercise = (
   exercise: ExerciseResponse,

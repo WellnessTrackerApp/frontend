@@ -1,5 +1,5 @@
 import { FaDumbbell, FaPen, FaTrashAlt } from "react-icons/fa";
-import type { ExerciseResponse } from "../services/exerciseService";
+import type { ExerciseResponse } from "../services/gym/exerciseService";
 import { useState } from "react";
 import ConfirmationWindow from "./ui/ConfirmationWindow";
 import { useTranslation } from "react-i18next";

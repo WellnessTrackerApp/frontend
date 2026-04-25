@@ -12,7 +12,7 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
-import { signOut } from "../services/authService";
+import { signOut } from "../services/gym/authService";
 import type { ErrorResponse, GeneralResponse } from "../types/ApiResponse";
 import { useTranslation } from "react-i18next";
 

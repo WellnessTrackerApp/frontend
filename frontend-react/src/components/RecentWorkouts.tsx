@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { getWorkouts, type WorkoutResponse } from "../services/workoutService";
+import {
+  getWorkouts,
+  type WorkoutResponse,
+} from "../services/gym/workoutService";
 import WorkoutDetails from "./modals/WorkoutDetailsModal";
 import WorkoutLog from "./WorkoutLog";
 import WorkoutLogLoading from "./loaders/WorkoutLogLoading";

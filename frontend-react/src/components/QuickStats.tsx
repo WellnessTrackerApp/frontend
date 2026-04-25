@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { type WorkoutResponse } from "../services/workoutService";
+import { type WorkoutResponse } from "../services/gym/workoutService";
 import { calculateWorkoutVolume } from "../utils/workoutUtils";
 
 interface QuickStatsProps {

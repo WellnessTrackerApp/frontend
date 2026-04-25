@@ -4,7 +4,7 @@ import WorkoutForm from "../components/WorkoutForm";
 import {
   getTrainingPlanById,
   type PlanResponse,
-} from "../services/trainingService";
+} from "../services/gym/trainingService";
 import type { ErrorResponse } from "../types/ApiResponse";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEdit, FaListAlt, FaPlusCircle } from "react-icons/fa";
-import type { ExerciseResponse } from "../../services/exerciseService";
+import type { ExerciseResponse } from "../../services/gym/exerciseService";
 import { exercisesFilter } from "../../utils/exerciseUtils";
 import ExerciseSelectionOption from "../selections/ExerciseSelectionOption";
 import AbsoluteWindowWrapper from "../ui/AbsoluteWindowWrapper";

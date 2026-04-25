@@ -3,15 +3,15 @@ import { parseISO } from "date-fns";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { FaHistory } from "react-icons/fa";
-import type { PlanItemResponse } from "../../services/trainingService";
-import {
-  getWorkoutExerciseHistory,
-  type WorkoutExerciseHistoryResponse,
-} from "../../services/workoutService";
+import type { PlanItemResponse } from "../../services/gym/trainingService";
 import type { ErrorResponse } from "../../types/ApiResponse";
 import WorkoutExerciseHistoryLoading from "../loaders/WorkoutExerciseHistoryLoading";
 import AbsoluteWindowWrapper from "../ui/AbsoluteWindowWrapper";
 import CloseModalButton from "../ui/CloseModalButton";
+import {
+  getWorkoutExerciseHistory,
+  type WorkoutExerciseHistoryResponse,
+} from "../../services/gym/workoutService";
 
 interface WorkoutExerciseHistoryModal {
   planItem: PlanItemResponse;

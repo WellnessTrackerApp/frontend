@@ -2,7 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { type PlanResponse } from "../services/trainingService";
+import { type PlanResponse } from "../services/gym/trainingService";
 import TrainingPlanSelectionOption from "./selections/TrainingPlanSelectionOption";
 import SelectOptionWindow from "./ui/SelectOptionWindow";
 import { Trans, useTranslation } from "react-i18next";

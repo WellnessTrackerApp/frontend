@@ -1,4 +1,4 @@
-import type { PlanResponse } from "../services/trainingService";
+import type { PlanResponse } from "../services/gym/trainingService";
 
 export const calculateAverageTrainingTime = (plan: PlanResponse) => {
   if (plan.planItems.length === 0) return 0;

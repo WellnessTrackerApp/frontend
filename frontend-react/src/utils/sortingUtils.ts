@@ -1,4 +1,4 @@
-import type { ExerciseResponse } from "../services/exerciseService";
+import type { ExerciseResponse } from "../services/gym/exerciseService";
 
 export const exerciseSorting = (a: ExerciseResponse, b: ExerciseResponse) => {
   if (a.isCustom && !b.isCustom) return -1;

@@ -19,12 +19,12 @@ import type { AxiosError } from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import type { ExerciseResponse } from "../../services/exerciseService";
+import type { ExerciseResponse } from "../../services/gym/exerciseService";
 import {
   updateTrainingPlan,
   type PlanResponse,
   type UpdateTrainingPlanProps,
-} from "../../services/trainingService";
+} from "../../services/gym/trainingService";
 import type { ErrorResponse, GeneralResponse } from "../../types/ApiResponse";
 import PlanItem from "../PlanItem";
 import PlanActionModal from "./PlanActionModal";

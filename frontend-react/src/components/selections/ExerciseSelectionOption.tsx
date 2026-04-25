@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { FaChevronRight, FaDumbbell } from "react-icons/fa";
-import type { ExerciseResponse } from "../../services/exerciseService";
+import type { ExerciseResponse } from "../../services/gym/exerciseService";
 import { useTranslation } from "react-i18next";
 
 interface ExerciseSelectionOptionProps {

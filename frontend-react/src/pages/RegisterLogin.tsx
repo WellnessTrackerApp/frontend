@@ -21,7 +21,7 @@ import {
   type SignInResponse,
   signUp,
   type SignUpRequest,
-} from "../services/authService";
+} from "../services/gym/authService";
 import { type ErrorResponse, type GeneralResponse } from "../types/ApiResponse";
 import { type RegisterLoginForm } from "../types/AuthForms";
 

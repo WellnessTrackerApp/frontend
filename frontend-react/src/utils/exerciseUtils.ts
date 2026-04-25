@@ -1,4 +1,4 @@
-import type { ExerciseResponse } from "../services/exerciseService";
+import type { ExerciseResponse } from "../services/gym/exerciseService";
 
 export const exercisesFilter = (
   data: readonly ExerciseResponse[],

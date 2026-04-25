@@ -1,7 +1,7 @@
+import { gymPrivateApi, gymPublicApi } from "../../clients";
 import type { AxiosResponse } from "axios";
-import { privateApi, publicApi } from "../clients";
-import type { GeneralResponse } from "../types/ApiResponse";
-import { exerciseSorting } from "../utils/sortingUtils";
+import type { GeneralResponse } from "../../types/ApiResponse";
+import { exerciseSorting } from "../../utils/sortingUtils";
 
 export const EXERCISE_CATEGORIES = [
   "ARMS",
@@ -30,14 +30,14 @@ export interface ExerciseResponse {
 }
 
 export const createNewExercise = async (
-  newExerciseRequest: ExerciseCreationRequest
+  newExerciseRequest: ExerciseCreationRequest,
 ): Promise<ExerciseResponse> => {
-  const response = await privateApi.post("/exercises", newExerciseRequest);
+  const response = await gymPrivateApi.post("/exercises", newExerciseRequest);
   return response.data;
 };
 
 export const getUserExercises = async (): Promise<Array<ExerciseResponse>> => {
-  const response = await privateApi.get<
+  const response = await gymPrivateApi.get<
     unknown,
     AxiosResponse<Array<ExerciseResponse>>,
     unknown
@@ -48,14 +48,14 @@ export const getUserExercises = async (): Promise<Array<ExerciseResponse>> => {
 export const getPredefinedExercises = async (): Promise<
   Array<ExerciseResponse>
 > => {
-  const response = await publicApi.get("/exercises");
+  const response = await gymPublicApi.get("/exercises");
   return response.data;
 };
 
 export const removeExercise = async (
-  exerciseId: number
+  exerciseId: number,
 ): Promise<GeneralResponse> => {
-  const response = await privateApi.delete(`/exercises/${exerciseId}`);
+  const response = await gymPrivateApi.delete(`/exercises/${exerciseId}`);
   return response.data;
 };
 
@@ -68,6 +68,6 @@ export const updateExercise = async ({
   exerciseId,
   request,
 }: UpdateExerciseProps): Promise<ExerciseResponse> => {
-  const response = await privateApi.put(`/exercises/${exerciseId}`, request);
+  const response = await gymPrivateApi.put(`/exercises/${exerciseId}`, request);
   return response.data;
 };

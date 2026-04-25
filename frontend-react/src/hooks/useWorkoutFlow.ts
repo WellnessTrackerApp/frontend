@@ -3,13 +3,13 @@ import {
   getPredefinedPlans,
   getUserPlans,
   type PlanResponse,
-} from "../services/trainingService";
+} from "../services/gym/trainingService";
 import type { ErrorResponse } from "../types/ApiResponse";
 import {
   getPredefinedExercises,
   getUserExercises,
   type ExerciseResponse,
-} from "../services/exerciseService";
+} from "../services/gym/exerciseService";
 import { exerciseSorting } from "../utils/sortingUtils";
 import {
   transformExercise,

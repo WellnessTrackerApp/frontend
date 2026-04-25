@@ -8,7 +8,7 @@ import {
   updateExercise,
   type ExerciseResponse,
   type UpdateExerciseProps,
-} from "../../services/exerciseService";
+} from "../../services/gym/exerciseService";
 import type { ErrorResponse } from "../../types/ApiResponse";
 import SelectOptionWindow from "../ui/SelectOptionWindow";
 import ExerciseActionModal from "./ExerciseActionModal";

@@ -1,6 +1,6 @@
 import { format } from "date-fns";
-import { privateApi } from "../clients";
-import type { GeneralResponse } from "../types/ApiResponse";
+import { gymPrivateApi } from "../../clients";
+import type { GeneralResponse } from "../../types/ApiResponse";
 import type { ExerciseResponse } from "./exerciseService";
 import type { PlanResponse } from "./trainingService";
 
@@ -21,9 +21,12 @@ export interface WorkoutCreationRequest {
 }
 
 export const createWorkout = async (
-  workoutCreationRequest: WorkoutCreationRequest
+  workoutCreationRequest: WorkoutCreationRequest,
 ): Promise<GeneralResponse> => {
-  const response = await privateApi.post("/workouts", workoutCreationRequest);
+  const response = await gymPrivateApi.post(
+    "/workouts",
+    workoutCreationRequest,
+  );
   return response.data;
 };
 
@@ -50,10 +53,10 @@ export interface WorkoutTrainingHistoryResponse {
 
 export const getWorkoutExerciseHistory = async (
   exerciseId: number,
-  previousWorkouts: number = 3
+  previousWorkouts: number = 3,
 ): Promise<WorkoutExerciseHistoryResponse> => {
-  const response = await privateApi.get(
-    `/workouts/exercises/${exerciseId}/history?previousWorkouts=${previousWorkouts}`
+  const response = await gymPrivateApi.get(
+    `/workouts/exercises/${exerciseId}/history?previousWorkouts=${previousWorkouts}`,
   );
   return response.data;
 };
@@ -61,12 +64,12 @@ export const getWorkoutExerciseHistory = async (
 export const getWorkoutExerciseHistoryByWorkoutInPeriod = async (
   exerciseId: number,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<WorkoutExerciseHistoryResponse> => {
   const formattedStartDate = format(startDate, "yyyy-MM-dd");
   const formattedEndDate = format(endDate, "yyyy-MM-dd");
-  const response = await privateApi.get(
-    `/workouts/exercises/${exerciseId}/history/period?startDate=${formattedStartDate}&endDate=${formattedEndDate}`
+  const response = await gymPrivateApi.get(
+    `/workouts/exercises/${exerciseId}/history/period?startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
   );
   return response.data;
 };
@@ -74,12 +77,12 @@ export const getWorkoutExerciseHistoryByWorkoutInPeriod = async (
 export const getWorkoutTrainingHistoryByWorkoutInPeriod = async (
   trainingId: number,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<WorkoutTrainingHistoryResponse> => {
   const formattedStartDate = format(startDate, "yyyy-MM-dd");
   const formattedEndDate = format(endDate, "yyyy-MM-dd");
-  const response = await privateApi.get(
-    `/workouts/trainings/${trainingId}/history/period?startDate=${formattedStartDate}&endDate=${formattedEndDate}`
+  const response = await gymPrivateApi.get(
+    `/workouts/trainings/${trainingId}/history/period?startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
   );
   return response.data;
 };
@@ -101,17 +104,20 @@ export const getWorkouts = async (
   endDate: Date | null,
   trainingPlanId: number | null,
   page: number,
-  size: number
+  size: number,
 ): Promise<Array<WorkoutResponse>> => {
-  const response = await privateApi.get<Array<WorkoutResponse>>(`/workouts`, {
-    params: {
-      startDate: startDate ? format(startDate, "yyyy-MM-dd") : null,
-      endDate: endDate ? format(endDate, "yyyy-MM-dd") : null,
-      trainingPlanId: trainingPlanId,
-      page: page,
-      size: size,
-      sort: "createdAt,desc",
+  const response = await gymPrivateApi.get<Array<WorkoutResponse>>(
+    `/workouts`,
+    {
+      params: {
+        startDate: startDate ? format(startDate, "yyyy-MM-dd") : null,
+        endDate: endDate ? format(endDate, "yyyy-MM-dd") : null,
+        trainingPlanId: trainingPlanId,
+        page: page,
+        size: size,
+        sort: "createdAt,desc",
+      },
     },
-  });
+  );
   return response.data;
 };
