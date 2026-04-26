@@ -86,7 +86,6 @@ const Wellness = () => {
       });
     },
     onError: (error: AxiosError<string>) => {
-      console.log(error);
       if (error.response) {
         toast.error(error.response.data);
       } else {
@@ -102,6 +101,11 @@ const Wellness = () => {
       !logNightSessionEndTime
     ) {
       toast.error(t("wellness.fillInAllFields"));
+      return;
+    }
+
+    if (logNightSessionStartTime === logNightSessionEndTime) {
+      toast.error(t("wellness.startAndEndTimeCannotBeSame"));
       return;
     }
 
@@ -183,7 +187,6 @@ const Wellness = () => {
                           : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors capitalize",
                       )}
                       onClick={() => {
-                        console.log("Setter called!");
                         setSleepStatsPeriod(period);
                       }}
                     >

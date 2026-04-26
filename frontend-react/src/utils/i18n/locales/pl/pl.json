@@ -282,6 +282,7 @@
     "sleepSessionLogged": "Sesja snu została zapisana pomyślnie",
     "failedToLogSleepSession": "Nie udało się zapisać sesji snu. Spróbuj ponownie.",
     "fillInAllFields": "Wypełnij wszystkie pola, aby zapisać sesję snu.",
+    "startAndEndTimeCannotBeSame": "Godzina rozpoczęcia i zakończenia nie może być taka sama.",
     "daily": "Dzień",
     "weekly": "Tydzień",
     "monthly": "Miesiąc",

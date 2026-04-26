@@ -48,7 +48,7 @@ const RegisterLogin = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    birthDate: new Date().toISOString().split("T")[0],
+    birthDate: "",
     height: "",
     weight: "",
     gender: "MALE",
@@ -67,10 +67,14 @@ const RegisterLogin = () => {
       try {
         await gymSignUp(gymSignUpRequest);
       } catch (error) {
-        await healthDeleteUser(
-          healthSignUpRequest.username,
-          healthSignUpRequest.password,
-        );
+        try {
+          await healthDeleteUser(
+            healthSignUpRequest.username,
+            healthSignUpRequest.password,
+          );
+        } catch (rollbackError) {
+          console.error("Failed to rollback health signup", rollbackError);
+        }
         throw error;
       }
     },
@@ -170,7 +174,7 @@ const RegisterLogin = () => {
       birthDate: formData.birthDate + "T00:00:00Z",
       height: Number(formData.height),
       weight: Number(formData.weight),
-      gender: formData.gender.toUpperCase(),
+      gender: formData.gender,
     };
 
     signUpMutation.mutate({

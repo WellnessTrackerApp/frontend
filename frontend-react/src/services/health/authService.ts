@@ -7,7 +7,7 @@ export interface SignUpRequest {
   birthDate: string;
   height: number;
   weight: number;
-  gender: string;
+  gender: "MALE" | "FEMALE";
 }
 
 export const healthSignUp = async (data: SignUpRequest) => {

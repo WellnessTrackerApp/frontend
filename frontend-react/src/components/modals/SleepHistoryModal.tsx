@@ -79,6 +79,8 @@ const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
   };
 
   const exportSleepData = () => {
+    if (isFetchingSleepHistoryReport) return;
+
     refetchSleepHistoryReport().then((response) => {
       if (response.data) {
         const url = window.URL.createObjectURL(response.data);

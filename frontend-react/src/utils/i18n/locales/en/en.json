@@ -245,6 +245,7 @@
     "sleepSessionLogged": "Sleep session logged successfully",
     "failedToLogSleepSession": "Failed to log sleep session. Please try again.",
     "fillInAllFields": "Please fill in all fields to log your sleep session.",
+    "startAndEndTimeCannotBeSame": "Start and end time cannot be the same.",
     "daily": "Daily",
     "weekly": "Weekly",
     "monthly": "Monthly",
