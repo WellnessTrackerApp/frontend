@@ -210,6 +210,7 @@
     "signInFailed": "Nie udało się zalogować: {{errorMessage}}. Coś poszło nie tak, spróbuj ponownie.",
     "signInSuccessful": "Zalogowano pomyślnie",
     "signUpSuccessful": "Rejestracja zakończona sukcesem. Proszę się zalogować.",
+    "signUpFailed": "Nie udało się zarejestrować: {{errorMessage}}. Coś poszło nie tak, spróbuj ponownie.",
     "userNotLoggedIn": "Użytkownik nie jest zalogowany. Proszę się zalogować, aby kontynuować.",
     "workoutStartMessage": "Rozpoczynasz trening: {{planName}}",
     "exerciseNameRequired": "Nazwa ćwiczenia jest wymagana",
