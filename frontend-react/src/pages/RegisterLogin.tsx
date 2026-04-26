@@ -67,7 +67,10 @@ const RegisterLogin = () => {
       try {
         await gymSignUp(gymSignUpRequest);
       } catch (error) {
-        await healthDeleteUser();
+        await healthDeleteUser(
+          healthSignUpRequest.username,
+          healthSignUpRequest.password,
+        );
         throw error;
       }
     },
@@ -165,8 +168,8 @@ const RegisterLogin = () => {
       email: formData.email,
       password: formData.password,
       birthDate: formData.birthDate + "T00:00:00Z",
-      height: formData.height as number,
-      weight: formData.weight as number,
+      height: Number(formData.height),
+      weight: Number(formData.weight),
       gender: formData.gender.toUpperCase(),
     };
 
@@ -398,11 +401,11 @@ const RegisterLogin = () => {
                             <span className="text-sm font-medium">
                               {gender == "MALE" ? (
                                 <span className="flex items-center gap-1">
-                                  <FaMars className="text-xl" /> Male
+                                  <FaMars className="text-xl" /> {t("male")}
                                 </span>
                               ) : (
                                 <span className="flex items-center gap-1">
-                                  <FaVenus className="text-xl" /> Female
+                                  <FaVenus className="text-xl" /> {t("female")}
                                 </span>
                               )}
                             </span>

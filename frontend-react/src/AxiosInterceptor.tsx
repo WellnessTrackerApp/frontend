@@ -6,7 +6,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 const refreshClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080",
+  baseURL: import.meta.env.VITE_GYM_API_URL || "http://localhost:8080",
 });
 
 interface QueueItem {

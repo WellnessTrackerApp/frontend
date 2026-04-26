@@ -2,10 +2,12 @@ import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import clsx from "clsx";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import {
   FaChartLine,
   FaCog,
   FaDumbbell,
+  FaHeartbeat,
   FaListAlt,
   FaSignOutAlt,
   FaThLarge,
@@ -14,7 +16,6 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "../services/gym/authService";
 import type { ErrorResponse, GeneralResponse } from "../types/ApiResponse";
-import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
   username: string | undefined;
@@ -43,6 +44,8 @@ const Sidebar = ({ username, isOpen }: SidebarProps) => {
       toast.success(response.message);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      localStorage.removeItem("username");
+      localStorage.removeItem("password");
       navigate("/register-login");
     },
     onError: (error) => {
@@ -105,6 +108,10 @@ const Sidebar = ({ username, isOpen }: SidebarProps) => {
           <NavLink className={linkStyles} to="/progress">
             <FaChartLine size={24} />
             <span className="text-sm font-medium">{t("navProgress")}</span>
+          </NavLink>
+          <NavLink className={linkStyles} to="/wellness">
+            <FaHeartbeat size={24} />
+            <span className="text-sm font-medium">{t("navWellness")}</span>
           </NavLink>
         </nav>
       </div>

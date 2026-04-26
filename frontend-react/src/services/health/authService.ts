@@ -1,5 +1,4 @@
 import { healthPublicApi } from "../../clients";
-import type { GeneralResponse } from "../../types/ApiResponse";
 
 export interface SignUpRequest {
   username: string;
@@ -11,16 +10,6 @@ export interface SignUpRequest {
   gender: string;
 }
 
-export interface SignUpResponse {
-  message: string;
-}
-
-export const healthSignUp = async (
-  data: SignUpRequest,
-): Promise<GeneralResponse> => {
-  const response = await healthPublicApi.post<GeneralResponse>(
-    "/register",
-    data,
-  );
-  return response.data;
+export const healthSignUp = async (data: SignUpRequest) => {
+  await healthPublicApi.post("/register", data);
 };
