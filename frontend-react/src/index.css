@@ -31,6 +31,11 @@
   --color-input-light-hover: #e8ecf1;
   --color-border-light: #cbd5e0;
 
+  --color-scrollbar-thumb-light: #b0bdd0;
+  --color-scrollbar-track-light: #f0f4f9;
+  --color-scrollbar-thumb-dark: #2d3d52;
+  --color-scrollbar-track-dark: #101723;
+
   --background-image-light-grid-pattern:
     linear-gradient(to right, #cbd5e099 1px, transparent 1px),
     linear-gradient(to bottom, #cbd5e099 1px, transparent 1px);

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import type { PlanResponse } from "../services/trainingService";
+import type { PlanResponse } from "../services/gym/trainingService";
 import CreateNewResource from "./CreateNewResource";
 import PlanBlock from "./PlanBlock";
 import PlanBlockLoading from "./loaders/PlanBlockLoading";

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { privateApi } from "./clients";
+import { gymPrivateApi } from "./clients";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 const refreshClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080",
+  baseURL: import.meta.env.VITE_GYM_API_URL || "http://localhost:8080",
 });
 
 interface QueueItem {
@@ -37,7 +37,7 @@ const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
       navigate("/register-login", { replace: true });
     };
 
-    const responseInterceptor = privateApi.interceptors.response.use(
+    const responseInterceptor = gymPrivateApi.interceptors.response.use(
       (response) => response,
       async (error) => {
         const originalRequest = error.config;
@@ -62,7 +62,7 @@ const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
             })
               .then((token) => {
                 originalRequest.headers["Authorization"] = `Bearer ${token}`;
-                return privateApi(originalRequest);
+                return gymPrivateApi(originalRequest);
               })
               .catch((err) => Promise.reject(err));
           }
@@ -87,7 +87,7 @@ const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
 
             originalRequest.headers["Authorization"] =
               `Bearer ${newAccessToken}`;
-            return privateApi(originalRequest);
+            return gymPrivateApi(originalRequest);
           } catch (refreshError) {
             processQueue(refreshError, null);
             handleLogoutCleanup();
@@ -100,7 +100,7 @@ const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
       },
     );
 
-    return () => privateApi.interceptors.response.eject(responseInterceptor);
+    return () => gymPrivateApi.interceptors.response.eject(responseInterceptor);
   }, [navigate, t]);
 
   return children;

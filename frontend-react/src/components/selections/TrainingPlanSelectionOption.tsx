@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { FaChevronRight, FaDumbbell } from "react-icons/fa";
-import type { PlanResponse } from "../../services/trainingService";
+import type { PlanResponse } from "../../services/gym/trainingService";
 import { useTranslation } from "react-i18next";
 
 interface TrainingPlanSelectionOptionProps {

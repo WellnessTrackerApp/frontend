@@ -10,7 +10,7 @@ import {
   type ExerciseCategory,
   type ExerciseCreationRequest,
   type ExerciseResponse,
-} from "../../services/exerciseService";
+} from "../../services/gym/exerciseService";
 import type { ErrorResponse } from "../../types/ApiResponse";
 import CategorySelectionOption from "../selections/CategorySelectionOption";
 import SelectOptionWindow from "../ui/SelectOptionWindow";

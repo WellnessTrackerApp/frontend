@@ -9,11 +9,11 @@ import {
   FaStopwatch,
   FaTrashAlt,
 } from "react-icons/fa";
-import type { ExerciseResponse } from "../services/exerciseService";
+import type { ExerciseResponse } from "../services/gym/exerciseService";
 import {
   removeTrainingPlan,
   type PlanResponse,
-} from "../services/trainingService";
+} from "../services/gym/trainingService";
 import type { ErrorResponse, GeneralResponse } from "../types/ApiResponse";
 import { calculateAverageTrainingTime } from "../utils/plansUtils";
 import PlanUpdateModal from "./modals/PlanUpdateModal";

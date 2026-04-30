@@ -1,5 +1,5 @@
-import { publicApi } from "../clients";
-import type { GeneralResponse } from "../types/ApiResponse";
+import { gymPublicApi } from "../../clients";
+import type { GeneralResponse } from "../../types/ApiResponse";
 
 export interface SignInRequest {
   email: string;
@@ -19,21 +19,29 @@ export interface SignUpRequest {
 }
 
 export const signIn = async (data: SignInRequest): Promise<SignInResponse> => {
-  const response = await publicApi.post<SignInResponse>("/auth/sign-in", data);
+  const response = await gymPublicApi.post<SignInResponse>(
+    "/auth/sign-in",
+    data,
+  );
   return response.data;
 };
 
-export const signUp = async (data: SignUpRequest): Promise<GeneralResponse> => {
-  const response = await publicApi.post<GeneralResponse>("/auth/sign-up", data);
+export const gymSignUp = async (
+  data: SignUpRequest,
+): Promise<GeneralResponse> => {
+  const response = await gymPublicApi.post<GeneralResponse>(
+    "/auth/sign-up",
+    data,
+  );
   return response.data;
 };
 
 export const signOut = async (data: {
   refreshToken: string;
 }): Promise<GeneralResponse> => {
-  const response = await publicApi.post<GeneralResponse>(
+  const response = await gymPublicApi.post<GeneralResponse>(
     "/auth/sign-out",
-    data
+    data,
   );
   return response.data;
 };

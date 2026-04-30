@@ -1,8 +1,8 @@
 import toast from "react-hot-toast";
 import { FaDumbbell, FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import type { ExerciseResponse } from "../../services/exerciseService";
-import type { PlanResponse } from "../../services/trainingService";
+import type { ExerciseResponse } from "../../services/gym/exerciseService";
+import type { PlanResponse } from "../../services/gym/trainingService";
 import { calculateAverageTrainingTime } from "../../utils/plansUtils";
 import AbsoluteWindowWrapper from "../ui/AbsoluteWindowWrapper";
 import CloseModalButton from "../ui/CloseModalButton";

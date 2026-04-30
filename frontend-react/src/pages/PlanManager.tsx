@@ -20,12 +20,12 @@ import {
   getUserExercises,
   removeExercise,
   type ExerciseResponse,
-} from "../services/exerciseService";
+} from "../services/gym/exerciseService";
 import {
   getPredefinedPlans,
   getUserPlans,
   type PlanResponse,
-} from "../services/trainingService";
+} from "../services/gym/trainingService";
 import type { ErrorResponse, GeneralResponse } from "../types/ApiResponse";
 import {
   transformExercise,

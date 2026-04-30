@@ -21,18 +21,18 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAvailableExercises } from "../hooks/useWorkoutFlow";
-import type { ExerciseResponse } from "../services/exerciseService";
+import type { ExerciseResponse } from "../services/gym/exerciseService";
 import type {
   PlanItemResponse,
   PlanResponse,
-} from "../services/trainingService";
+} from "../services/gym/trainingService";
 import {
   createWorkout,
   getWorkoutExerciseHistory,
   getWorkouts,
   type ExerciseSet,
   type WorkoutCreationRequest,
-} from "../services/workoutService";
+} from "../services/gym/workoutService";
 import type { ErrorResponse, GeneralResponse } from "../types/ApiResponse";
 import { preventForbiddenInputNumberKeys } from "../utils/inputUtils";
 import AutoWorkoutTimer from "./AutoWorkoutTimer";

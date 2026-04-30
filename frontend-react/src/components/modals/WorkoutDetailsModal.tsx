@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { FaChartLine } from "react-icons/fa";
-import type { WorkoutResponse } from "../../services/workoutService";
+import type { WorkoutResponse } from "../../services/gym/workoutService";
 import {
   calculateTotalSets,
   calculateWorkoutVolume,

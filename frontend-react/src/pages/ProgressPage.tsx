@@ -25,14 +25,14 @@ import {
   useAvailableExercises,
   useAvailablePlans,
 } from "../hooks/useWorkoutFlow";
-import { type ExerciseResponse } from "../services/exerciseService";
-import type { PlanResponse } from "../services/trainingService";
+import { type ExerciseResponse } from "../services/gym/exerciseService";
+import type { PlanResponse } from "../services/gym/trainingService";
 import {
   getWorkoutExerciseHistoryByWorkoutInPeriod,
   getWorkoutTrainingHistoryByWorkoutInPeriod,
   type WorkoutExerciseHistoryResponse,
   type WorkoutTrainingHistoryResponse,
-} from "../services/workoutService";
+} from "../services/gym/workoutService";
 import { getCurrentDate } from "../utils/dateUtils";
 import { exercisesFilter } from "../utils/exerciseUtils";
 import { findMaxLift, findMaxVolume } from "../utils/workoutUtils";

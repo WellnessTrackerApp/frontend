@@ -9,7 +9,7 @@ import RecentWorkouts from "../components/RecentWorkouts";
 import PageWrapper from "../components/ui/PageWrapper";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { useAvailablePlans } from "../hooks/useWorkoutFlow";
-import { getWorkouts } from "../services/workoutService";
+import { getWorkouts } from "../services/gym/workoutService";
 import { getCurrentDate } from "../utils/dateUtils";
 import { transformWorkout } from "../utils/localizationUtils";
 
