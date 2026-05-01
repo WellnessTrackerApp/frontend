@@ -95,7 +95,7 @@ const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
         window.URL.revokeObjectURL(url);
         toast.success(t("wellness.sleepHistoryExportSuccess"));
       } else {
-        toast.success(t("wellness.sleepHistoryExportFailed"));
+        toast.error(t("wellness.sleepHistoryExportFailed"));
       }
     });
   };
@@ -107,7 +107,7 @@ const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
       queryClient.invalidateQueries({ queryKey: ["sleepHistory"] });
     },
     onError: () => {
-      toast.error(t("wellness.unableToDeleteSleepEntry"));
+      toast.error(t("wellness.failedToDeleteSleepEntry"));
     },
   });
 

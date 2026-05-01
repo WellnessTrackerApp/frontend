@@ -96,10 +96,14 @@ const MealCreationModal = ({ onClose }: MealCreationModalProps) => {
       return;
     }
 
-    const dietEntryRequest = {
-      ...dietEntry,
+    const dietEntryRequest: DietEntryRequest = {
+      mealName: dietEntry.mealName.trim(),
       eatenAt: parseISO(dietEntry.eatenAt).toISOString(),
-    } as DietEntryRequest;
+      calories: Number(dietEntry.calories),
+      protein: Number(dietEntry.protein),
+      carbs: Number(dietEntry.carbs),
+      fat: Number(dietEntry.fat),
+    };
 
     addDietEntryMutation.mutate(dietEntryRequest);
   };
