@@ -207,6 +207,11 @@ const Wellness = () => {
     if (isFetchingMealHistoryReport) return;
 
     refetchMealHistoryReport().then((response) => {
+      if (response.error) {
+        toast.error(t("wellness.mealHistoryExportFailed"));
+        return;
+      }
+
       if (response.data) {
         const url = window.URL.createObjectURL(response.data);
         const link = document.createElement("a");
@@ -481,7 +486,7 @@ const Wellness = () => {
                             {entry.mealName}
                           </p>
                           <p className="text-xs text-gray-500 dark:text-gray-400 italic">
-                            {format(entry.eatenAt, "HH:mm a")}
+                            {format(entry.eatenAt, "hh:mm a")}
                           </p>
                           <div className="flex gap-2 mt-1">
                             <span className="text-[10px] px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded font-bold">

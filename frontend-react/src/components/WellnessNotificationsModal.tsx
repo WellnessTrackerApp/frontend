@@ -76,13 +76,17 @@ const WellnessNotificationsModal = ({
   };
 
   const handleMarkAllAsRead = () => {
-    if (!notifications) {
+    if (!notifications || deleteNotificationsMutation.isPending) {
       return;
     }
 
-    notifications.forEach((notification) => {
-      handleDeleteNotification(notification.id);
-    });
+    Promise.all(notifications.map((n) => markNotificationAsRead(n.id)))
+      .then(() => {
+        queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      })
+      .catch(() => {
+        toast.error(t("wellness.failedToDeleteNotification"));
+      });
   };
 
   return (
@@ -149,7 +153,7 @@ const WellnessNotificationsModal = ({
                 </div>
                 <FaTimes
                   size={14}
-                  className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 cursor-pointer transition-all"
+                  className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 cursor-pointer transition-all my-auto"
                   onClick={() => handleDeleteNotification(notification.id)}
                 />
               </div>

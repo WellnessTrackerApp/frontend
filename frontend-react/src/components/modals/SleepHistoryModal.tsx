@@ -84,6 +84,11 @@ const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
     if (isFetchingSleepHistoryReport) return;
 
     refetchSleepHistoryReport().then((response) => {
+      if (response.error) {
+        toast.error(t("wellness.sleepHistoryExportFailed"));
+        return;
+      }
+
       if (response.data) {
         const url = window.URL.createObjectURL(response.data);
         const link = document.createElement("a");
