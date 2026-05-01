@@ -168,11 +168,14 @@ const Wellness = () => {
     queryKey: ["dailyMacros", new Date().toDateString()],
   });
 
-  const { data: dailyDietEntries, isLoading: isDailyDietEntriesLoading } =
-    useQuery({
-      queryFn: getDailyDietEntries,
-      queryKey: ["dailyDietEntries", new Date().toDateString()],
-    });
+  const {
+    data: dailyDietEntries,
+    isLoading: isDailyDietEntriesLoading,
+    isError: isDailyDietEntriesError,
+  } = useQuery({
+    queryFn: getDailyDietEntries,
+    queryKey: ["dailyDietEntries", new Date().toDateString()],
+  });
 
   const deleteDietEntryMutation = useMutation({
     mutationFn: deleteDietEntryById,
@@ -242,6 +245,8 @@ const Wellness = () => {
           </div>
           <div className="flex items-center gap-4">
             <button
+              type="button"
+              aria-label={t("wellness.notifications")}
               className="p-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer"
               onClick={() => setDisplayNotifications(true)}
             >
@@ -471,6 +476,10 @@ const Wellness = () => {
               </h4>
               {isDailyDietEntriesLoading ? (
                 <DailyDietEntriesLoading />
+              ) : isDailyDietEntriesError ? (
+                <p className="text-red-500 dark:text-red-400 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-white/5">
+                  {t("wellness.errorLoadingDietEntries")}
+                </p>
               ) : !dailyDietEntries || dailyDietEntries.length == 0 ? (
                 <p className="font-bold">{t("wellness.noData")}</p>
               ) : (

@@ -314,6 +314,7 @@
       "LOW_CARBS": "Low carbs",
       "LOW_FAT": "Low fat",
       "ACTIVITY": "Activity"
-    }
+    },
+    "errorLoadingDietEntries": "Error loading diet entries"
   }
 }

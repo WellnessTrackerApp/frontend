@@ -48,7 +48,7 @@ const WellnessNotificationsModal = ({
     queryFn: getNotifications,
     queryKey: ["notifications", new Date().toDateString()],
     select: (data) =>
-      data.sort(
+      [...data].sort(
         (a, b) =>
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
       ),

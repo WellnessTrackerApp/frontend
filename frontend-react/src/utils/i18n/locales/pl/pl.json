@@ -354,6 +354,7 @@
       "LOW_CARBS": "Mało węglowodanów",
       "LOW_FAT": "Mało tłuszczu",
       "ACTIVITY": "Aktywność"
-    }
+    },
+    "errorLoadingDietEntries": "Nie udało się załadować historii posiłków"
   }
 }
