@@ -207,7 +207,9 @@
     "customRestTimerInvalidRangeMessage": "Custom rest timer must be between 1 and 3600 seconds",
     "sessionExpiredMessage": "Session expired. Please log in again",
     "confirmPasswordMatchingError": "Confirm password must match the password",
-    "heightWeightRequiredError": "Height and weight are required"
+    "heightWeightRequiredError": "Height and weight are required",
+    "provideAllInformationToAddMeal": "Provide all the information to add a meal.",
+    "dietEntryDataNegative": "Calories and macros of diet entry data should not be negative."
   },
   "exerciseCategories": {
     "arms": "ARMS",
@@ -264,9 +266,39 @@
       "UNSPECIFIED": "Unspecified"
     },
     "preparingFile": "Preparing your file...",
-    "exportSuccess": "Sleep history report exported successfully",
-    "exportFailed": "Failed to export sleep history report. Please try again.",
+    "sleepHistoryExportSuccess": "Sleep history report exported successfully",
+    "sleepHistoryExportFailed": "Failed to export sleep history report. Please try again.",
+    "mealHistoryExportSuccess": "Meal history report exported successfully",
+    "mealHistoryExportFailed": "Failed to export meal history report. Please try again.",
     "errorLoadingSleepHistory": "Error loading sleep history",
-    "noSleepDataForPeriod": "No sleep data available for this period"
+    "noSleepDataForPeriod": "No sleep data available for this period",
+    "mealTracking": "Meal Tracking",
+    "todaysIntake": "Today's Intake",
+    "todaysMeals": "Today's Meals",
+    "addMeal": "Add Meal",
+    "addNewMeal": "Add New Meal",
+    "logYourNutritionalIntake": "Log your nutritional intake",
+    "mealName": "Meal Name",
+    "dateAndTime": "Date & Time",
+    "totalCalories": "Total Calories",
+    "kcal": "kcal",
+    "macronutrients": "Macronutrients",
+    "proteinG": "Protein (g)",
+    "carbsG": "Carbs (g)",
+    "fatG": "Fat (g)",
+    "protein": "Protein",
+    "carbs": "Carbs",
+    "fat": "Fat",
+    "precisionNutritionTracking": "Precision nutrition tracking for peak physical output.",
+    "saveMeal": "Save Meal",
+    "mealAddedSuccessfully": "Meal added successfully",
+    "loadingCalories": "Loading calories",
+    "noData": "No data",
+    "macrosLoading": "Macros loading",
+    "dailyDietEntriesLoading": "Daily diet entries loading",
+    "mealDeletedSuccessfully": "Meal deleted successfully",
+    "failedToDeleteMealEntry": "Failed to delete meal entry. Please try again.",
+    "sleepEntryDeletedSuccessfully": "Successfully deleted sleep entry",
+    "failedToDeleteSleepEntry": "Failed to delete sleep entry. Please try again."
   }
 }
