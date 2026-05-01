@@ -1,11 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import { format, parseISO } from "date-fns";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import { FaClock } from "react-icons/fa";
+import { FaClock, FaTimes } from "react-icons/fa";
 import {
+  deleteSleepEntryById,
   getSleepDurationsForPeriod,
   getSleepHistoryPdfReport,
   Period,
@@ -25,6 +26,7 @@ interface SleepHistoryModalProps {
 
 const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
 
   const [sleepPeriod, setSleepPeriod] = useState<PeriodType>(Period.WEEKLY);
 
@@ -82,6 +84,11 @@ const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
     if (isFetchingSleepHistoryReport) return;
 
     refetchSleepHistoryReport().then((response) => {
+      if (response.error) {
+        toast.error(t("wellness.sleepHistoryExportFailed"));
+        return;
+      }
+
       if (response.data) {
         const url = window.URL.createObjectURL(response.data);
         const link = document.createElement("a");
@@ -91,11 +98,30 @@ const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
         link.click();
         link.remove();
         window.URL.revokeObjectURL(url);
-        toast.success(t("wellness.exportSuccess"));
+        toast.success(t("wellness.sleepHistoryExportSuccess"));
       } else {
-        toast.error(t("wellness.exportFailed"));
+        toast.error(t("wellness.sleepHistoryExportFailed"));
       }
     });
+  };
+
+  const deleteSleepEntryMutation = useMutation({
+    mutationFn: deleteSleepEntryById,
+    onSuccess: () => {
+      toast.success(t("wellness.sleepEntryDeletedSuccessfully"));
+      queryClient.invalidateQueries({ queryKey: ["sleepHistory"] });
+    },
+    onError: () => {
+      toast.error(t("wellness.failedToDeleteSleepEntry"));
+    },
+  });
+
+  const handleSleepEntryDeletion = (entryId: number) => {
+    if (deleteSleepEntryMutation.isPending) {
+      return;
+    }
+
+    deleteSleepEntryMutation.mutate(entryId);
   };
 
   return (
@@ -166,10 +192,15 @@ const SleepHistoryModal = ({ onClose }: SleepHistoryModalProps) => {
                   </div>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="flex gap-5 items-center text-right group">
                 <p className="text-sm md:text-lg font-bold text-blue-600 dark:text-blue-500">
                   {displayTimeDifference(entry.start, entry.end)}
                 </p>
+                <FaTimes
+                  size={20}
+                  className="group-hover:block hidden text-red-500 cursor-pointer hover:text-red-600"
+                  onClick={() => handleSleepEntryDeletion(entry.id)}
+                />
               </div>
             </div>
           ))
