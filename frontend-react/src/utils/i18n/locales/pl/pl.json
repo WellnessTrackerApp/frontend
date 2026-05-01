@@ -337,6 +337,23 @@
     "mealDeletedSuccessfully": "Posiłek został pomyślnie usunięty",
     "failedToDeleteMealEntry": "Nie udało się usunąć posiłku. Spróbuj ponownie.",
     "sleepEntryDeletedSuccessfully": "Zapis snu został pomyślnie usunięty",
-    "failedToDeleteSleepEntry": "Nie udało się usunąć zapisu snu. Spróbuj ponownie."
+    "failedToDeleteSleepEntry": "Nie udało się usunąć zapisu snu. Spróbuj ponownie.",
+    "notifications": "Powiadomienia",
+    "markAllAsRead": "Oznacz wszystkie jako przeczytane",
+    "noNotificationsYet": "Brak nowych powiadomień",
+    "allCaughtUp": "Jesteś na bieżąco!",
+    "failedToDeleteNotification": "Nie udało się usunąć powiadomienia, spróbuj ponownie później",
+    "notificationCount_one": "{{count}} powiadomienie",
+    "notificationCount_few": "{{count}} powiadomienia",
+    "notificationCount_many": "{{count}} powiadomień",
+    "notificationCount_other": "{{count}} powiadomień",
+    "notificationsTypes": {
+      "SLEEP": "Sen",
+      "LOW_KCAL": "Mało kalorii",
+      "LOW_PROTEIN": "Mało białka",
+      "LOW_CARBS": "Mało węglowodanów",
+      "LOW_FAT": "Mało tłuszczu",
+      "ACTIVITY": "Aktywność"
+    }
   }
 }

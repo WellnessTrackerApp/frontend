@@ -38,6 +38,7 @@ import {
   type PeriodType,
   type SleepQualityType,
 } from "../services/health/sleepService";
+import WellnessNotificationsModal from "../components/WellnessNotificationsModal";
 
 const Wellness = () => {
   const { t } = useTranslation();
@@ -59,6 +60,9 @@ const Wellness = () => {
     useState<boolean>(false);
 
   const [displayMealCreationModal, setDisplayMealCreationModal] =
+    useState<boolean>(false);
+
+  const [displayNotifications, setDisplayNotifications] =
     useState<boolean>(false);
 
   const {
@@ -104,6 +108,9 @@ const Wellness = () => {
       queryClient.invalidateQueries({
         queryKey: ["medianSleepQuality"],
       });
+      setLogNightSessionDate("");
+      setLogNightSessionStartTime("");
+      setLogNightSessionEndTime("");
     },
     onError: (error: AxiosError<string>) => {
       if (error.response) {
@@ -184,7 +191,7 @@ const Wellness = () => {
     isFetching: isFetchingMealHistoryReport,
   } = useQuery({
     queryFn: getDietMonthlyPdfReport,
-    queryKey: ["mealHistoryReport", new Date().getDate()],
+    queryKey: ["mealHistoryReport", new Date().toDateString()],
     enabled: false,
   });
 
@@ -229,7 +236,10 @@ const Wellness = () => {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <button className="p-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 transition-colors">
+            <button
+              className="p-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer"
+              onClick={() => setDisplayNotifications(true)}
+            >
               <FaBell size={24} />
             </button>
             <NavLink
@@ -328,6 +338,7 @@ const Wellness = () => {
                       <input
                         className="w-full bg-gray-100 dark:bg-gray-700 border-none rounded-lg p-3 text-gray-900 dark:text-gray-100 select-none outline-none focus:ring-2 focus:ring-blue-500/50 [&::-webkit-calendar-picker-indicator]:hidden"
                         onClick={(e) => e.currentTarget.showPicker()}
+                        value={logNightSessionDate}
                         onChange={(e) => setLogNightSessionDate(e.target.value)}
                         type="date"
                       />
@@ -340,6 +351,7 @@ const Wellness = () => {
                         <input
                           className="w-full bg-gray-100 dark:bg-gray-700 border-none rounded-lg p-3 text-gray-900 dark:text-gray-100 select-none outline-none focus:ring-2 focus:ring-blue-500/50 [&::-webkit-calendar-picker-indicator]:hidden"
                           onClick={(e) => e.currentTarget.showPicker()}
+                          value={logNightSessionStartTime}
                           onChange={(e) =>
                             setLogNightSessionStartTime(e.target.value)
                           }
@@ -353,6 +365,7 @@ const Wellness = () => {
                         <input
                           className="w-full bg-gray-100 dark:bg-gray-700 border-none rounded-lg p-3 text-gray-900 dark:text-gray-100 select-none outline-none focus:ring-2 focus:ring-blue-500/50 [&::-webkit-calendar-picker-indicator]:hidden"
                           onClick={(e) => e.currentTarget.showPicker()}
+                          value={logNightSessionEndTime}
                           onChange={(e) =>
                             setLogNightSessionEndTime(e.target.value)
                           }
@@ -525,6 +538,11 @@ const Wellness = () => {
         {displayMealCreationModal && (
           <MealCreationModal
             onClose={() => setDisplayMealCreationModal(false)}
+          />
+        )}
+        {displayNotifications && (
+          <WellnessNotificationsModal
+            onClose={() => setDisplayNotifications(false)}
           />
         )}
       </div>

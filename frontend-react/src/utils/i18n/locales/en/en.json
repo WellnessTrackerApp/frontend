@@ -299,6 +299,21 @@
     "mealDeletedSuccessfully": "Meal deleted successfully",
     "failedToDeleteMealEntry": "Failed to delete meal entry. Please try again.",
     "sleepEntryDeletedSuccessfully": "Successfully deleted sleep entry",
-    "failedToDeleteSleepEntry": "Failed to delete sleep entry. Please try again."
+    "failedToDeleteSleepEntry": "Failed to delete sleep entry. Please try again.",
+    "notifications": "Notifications",
+    "markAllAsRead": "Mark all as read",
+    "noNotificationsYet": "No notifications yet",
+    "allCaughtUp": "You're all caught up!",
+    "failedToDeleteNotification": "Unable to delete notification, please try again later",
+    "notificationCount_one": "{{count}} notification",
+    "notificationCount_other": "{{count}} notifications",
+    "notificationsTypes": {
+      "SLEEP": "Sleep",
+      "LOW_KCAL": "Low kcal",
+      "LOW_PROTEIN": "Low protein",
+      "LOW_CARBS": "Low carbs",
+      "LOW_FAT": "Low fat",
+      "ACTIVITY": "Activity"
+    }
   }
 }
