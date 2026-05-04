@@ -62,18 +62,19 @@ const RegisterLogin = () => {
       healthSignUpRequest: HealthSignUpRequest;
       gymSignUpRequest: GymSignUpRequest;
     }) => {
-      await healthSignUp(healthSignUpRequest);
+        const id = await gymSignUp(gymSignUpRequest);
+
 
       try {
-        await gymSignUp(gymSignUpRequest);
+        await healthSignUp({
+                ...healthSignUpRequest,
+                id: id
+              });
       } catch (error) {
         try {
-          await healthDeleteUser(
-            healthSignUpRequest.username,
-            healthSignUpRequest.password,
-          );
+          await gymDeleteUser();
         } catch (rollbackError) {
-          console.error("Failed to rollback health signup", rollbackError);
+          console.error("Failed to rollback gym signup", rollbackError);
         }
         throw error;
       }
@@ -167,7 +168,7 @@ const RegisterLogin = () => {
       password: formData.password,
     };
 
-    const healthSignUpRequest: HealthSignUpRequest = {
+    const healthSignUpRequest: Omit<HealthSignUpRequest, 'id'> = {
       username: formData.username,
       email: formData.email,
       password: formData.password,
@@ -178,7 +179,7 @@ const RegisterLogin = () => {
     };
 
     signUpMutation.mutate({
-      healthSignUpRequest,
+      healthSignUpRequest: healthSignUpRequest as HealthSignUpRequest,
       gymSignUpRequest,
     });
   };
