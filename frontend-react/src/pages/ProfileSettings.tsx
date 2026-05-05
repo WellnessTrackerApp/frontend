@@ -5,13 +5,15 @@ import {
   FaBalanceScale,
   FaLanguage,
   FaMoon,
-  FaRegCalendar,
+  FaUser,
   FaUserCircle,
 } from "react-icons/fa";
 import ProfileSectionLoading from "../components/loaders/ProfileSectionLoading";
 import PageWrapper from "../components/ui/PageWrapper";
 import { useUserProfile } from "../hooks/useUserProfile";
 import type { SupportedLanguage } from "../utils/i18n";
+import Button from "../components/ui/Button";
+import PhysicalMetricsUpdateModal from "../components/modals/PhysicalMetricsUpdateModal";
 
 const ProfileSettings = () => {
   const { t, i18n } = useTranslation();
@@ -37,6 +39,9 @@ const ProfileSettings = () => {
       return stored === "pl" || stored === "en" ? stored : "en";
     },
   );
+
+  const [displayUpdateMetricsModal, setDisplayUpdateMetricsModal] =
+    useState<boolean>(false);
 
   const toggleTheme = () => {
     const html = document.documentElement;
@@ -68,7 +73,7 @@ const ProfileSettings = () => {
             {t("settingsDescription")}
           </p>
         </div>
-        <section className="space-y-4">
+        <section className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="md:text-lg text-md font-bold tracking-tight px-1 text-gray-400 uppercase">
               {t("accountInformation")}
@@ -77,36 +82,89 @@ const ProfileSettings = () => {
           {!showUserProfile ? (
             <ProfileSectionLoading />
           ) : (
-            <div className="bg-white dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-border-dark p-8 relative overflow-hidden">
-              <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
-                <FaUserCircle className="w-32 h-32 rounded-2xl bg-cover bg-center shrink-0" />
-                <div className="flex-1 space-y-4 text-center md:text-left">
-                  <div className="space-y-1">
-                    <p className="text-3xl font-black text-gray-900 dark:text-white">
-                      {userProfile.username}
-                    </p>
-                    <p className="text-gray-500 font-medium">
-                      {userProfile.email}
-                    </p>
-                    <p className="text-sm text-primary font-semibold flex items-center justify-center md:justify-start gap-1">
-                      <FaRegCalendar className="text-sm" />
-                      {t("memberSince", {
-                        date: new Date(userProfile.createdAt),
-                      })}
-                    </p>
-                  </div>
-                  <div className="w-full flex lg:flex-col lg:w-3/4 xl:w-1/2 gap-2">
-                    <button className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-600 transition-colors shadow-lg shadow-primary/20 cursor-pointer">
-                      {t("editProfile")}
-                    </button>
-                    <button className="bg-gray-100 dark:bg-border-dark hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-colors flex justify-center items-center gap-2 cursor-pointer">
-                      {t("changePassword")}
-                    </button>
+            <>
+              <div className="bg-white dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-border-dark p-6">
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <FaUserCircle className="w-32 h-32 rounded-2xl bg-cover bg-center shrink-0" />
+                  <div className="flex-1 flex flex-col md:flex-row justify-between items-center md:items-start gap-4">
+                    <div className="text-center md:text-left">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {userProfile.username}
+                      </h3>
+                      <p className="text-gray-400 font-medium">
+                        {userProfile.email}
+                      </p>
+                    </div>
+                    <div className="flex gap-3">
+                      <button className="bg-primary text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-blue-600 transition-colors shadow-lg shadow-primary/20 cursor-pointer">
+                        {t("editProfile")}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="absolute -right-12 -top-12 size-48 bg-primary/5 rounded-full blur-3xl"></div>
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-border-dark p-6 space-y-6">
+                  <div className="flex justify-between">
+                    <div className="flex items-center gap-2 text-gray-400 uppercase text-[10px] font-bold tracking-widest">
+                      <FaBalanceScale className="text-base" />
+                      {t("physicalMetrics")}
+                    </div>
+                    <Button
+                      btnStyle={"approve"}
+                      size={"small"}
+                      children={"Update metrics"}
+                      additionalStyle="rounded-lg text-white! px-3 py-1 font-bold text-sm"
+                      onClick={() => setDisplayUpdateMetricsModal(true)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                        {t("height")}
+                      </p>
+                      <p className="text-lg font-bold text-gray-900 dark:text-white">
+                        {userProfile.height} cm
+                      </p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                        {t("userWeight")}
+                      </p>
+                      <p className="text-lg font-bold text-gray-900 dark:text-white">
+                        {userProfile.weight} kg
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-border-dark p-6 space-y-6">
+                  <div className="flex items-center gap-2 text-gray-400 uppercase text-[10px] font-bold tracking-widest">
+                    <FaUser className="text-base" />
+                    {t("personalInfo")}
+                  </div>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                        {t("birthDate")}
+                      </p>
+                      <p className="text-lg font-bold text-gray-900 dark:text-white">
+                        {t("dateFormats.monthDayYear", {
+                          date: new Date(userProfile.birthDate),
+                        })}
+                      </p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                        {t("gender")}
+                      </p>
+                      <p className="text-lg font-bold text-gray-900 dark:text-white">
+                        {t(`genders.${userProfile.gender}`)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
           )}
         </section>
         <section className="space-y-4">
@@ -220,6 +278,13 @@ const ProfileSettings = () => {
           </div>
         </section>
       </div>
+      {displayUpdateMetricsModal && (
+        <PhysicalMetricsUpdateModal
+          onClose={() => setDisplayUpdateMetricsModal(false)}
+          weight={userProfile?.weight || ""}
+          height={userProfile?.height || ""}
+        />
+      )}
     </PageWrapper>
   );
 };

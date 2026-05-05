@@ -125,6 +125,19 @@
   "memberSince": "Member since {{date, date(fmt: dd MMMM yyyy)}}",
   "editProfile": "Edit Profile",
   "changePassword": "Change Password",
+  "physicalMetrics": "Physical Metrics",
+  "personalInfo": "Personal Info",
+  "height": "Height",
+  "userWeight": "Weight",
+  "birthDate": "Birth Date",
+  "gender": "Gender",
+  "genders": {
+    "MALE": "Male",
+    "FEMALE": "Female"
+  },
+  "editPhysicalMetrics": "Edit Physical Metrics",
+  "physicalMetricsDescription": "Keep your data accurate for precision",
+  "saveChanges": "Save Changes",
   "appPreferences": "App Preferences",
   "darkMode": "Dark Mode",
   "darkModeDescription": "Easier on the eyes in the gym",
@@ -210,7 +223,12 @@
     "confirmPasswordMatchingError": "Confirm password must match the password",
     "heightWeightRequiredError": "Height and weight are required",
     "provideAllInformationToAddMeal": "Provide all the information to add a meal.",
-    "dietEntryDataNegative": "Calories and macros of diet entry data should not be negative."
+    "dietEntryDataNegative": "Calories and macros of diet entry data should not be negative.",
+    "userMetricsUpdatedSuccessfully": "Successfully updated user metrics",
+    "userMetricsUpdateFailed": "Failed to update user metrics",
+    "heightWeightRequired": "Height and weight must be provided",
+    "heightInvalidRange": "Height should be between 50 and 300 cm",
+    "weightInvalidRange": "Weight should be between 40 and 500 kg"
   },
   "exerciseCategories": {
     "arms": "ARMS",
