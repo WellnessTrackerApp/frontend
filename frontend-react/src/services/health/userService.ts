@@ -1,1 +1,0 @@
-import { healthPublicApi } from "../../clients";
