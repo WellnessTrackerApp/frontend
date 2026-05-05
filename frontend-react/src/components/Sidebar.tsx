@@ -11,6 +11,7 @@ import {
   FaListAlt,
   FaSignOutAlt,
   FaThLarge,
+  FaTrophy,
   FaUserCircle,
 } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -112,6 +113,10 @@ const Sidebar = ({ username, isOpen }: SidebarProps) => {
           <NavLink className={linkStyles} to="/wellness">
             <FaHeartbeat size={24} />
             <span className="text-sm font-medium">{t("navWellness")}</span>
+          </NavLink>
+          <NavLink className={linkStyles} to="/goals">
+            <FaTrophy size={24} />
+            <span className="text-sm font-medium">{t("navGoals")}</span>
           </NavLink>
         </nav>
       </div>

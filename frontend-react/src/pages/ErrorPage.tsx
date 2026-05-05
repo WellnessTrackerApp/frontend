@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { FaHeartBroken, FaMapMarkedAlt, FaThLarge } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PageWrapper from "../components/ui/PageWrapper";
 
 function ErrorPage() {
+  const { t } = useTranslation();
   return (
     <PageWrapper>
       <div className="flex-1 flex w-full h-screen items-center justify-center p-8 lg:p-12 relative overflow-hidden">
@@ -21,13 +23,10 @@ function ErrorPage() {
           </div>
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white">
-              Looks like you took a
-              <span className="text-primary"> wrong turn</span> at the squat
-              rack.
+              {t("errorPage.title")}
             </h2>
             <p className="text-xl text-gray-500 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
-              The page you are looking for doesn't exist or has been moved to
-              another station.
+              {t("errorPage.description")}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -36,7 +35,7 @@ function ErrorPage() {
               to="/"
             >
               <FaThLarge />
-              Back to Dashboard
+              {t("errorPage.backToDashboard")}
             </Link>
           </div>
         </div>

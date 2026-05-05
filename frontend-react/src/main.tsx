@@ -16,6 +16,7 @@ import RegisterLogin from "./pages/RegisterLogin.tsx";
 import Workout from "./pages/Workout.tsx";
 import "./utils/i18n";
 import Wellness from "./pages/Wellness.tsx";
+import GoalsPage from "./pages/GoalsPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/progress" element={<ProgressPage />} />
               <Route path="/profile" element={<ProfileSettings />} />
               <Route path="/wellness" element={<Wellness />} />
+              <Route path="/goals" element={<GoalsPage />} />
             </Route>
             <Route path="/register-login" element={<RegisterLogin />} />
             <Route path="*" element={<ErrorPage />} />

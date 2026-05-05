@@ -22,6 +22,7 @@
   "navPlans": "Plans",
   "navProgress": "Progress",
   "navWellness": "Wellness",
+  "navGoals": "Goals",
   "navSettings": "Settings",
   "navLogout": "Logout",
   "fetchingWorkoutsFailed": "Failed to fetch workouts",
@@ -316,5 +317,55 @@
       "ACTIVITY": "Activity"
     },
     "errorLoadingDietEntries": "Error loading diet entries"
+  },
+  "errorPage": {
+    "title": "Looks like you took a wrong turn at the squat rack.",
+    "description": "The page you are looking for doesn't exist or has been moved to another station.",
+    "backToDashboard": "Back to Dashboard"
+  },
+  "goalsPage": {
+    "title": "Health & Performance Goals",
+    "description": "Track your daily targets and set new milestones.",
+    "loadingGoals": "Loading health goals",
+    "goalsError": "Health goals error",
+    "noGoalsFound": "No health goals defined",
+    "healthGoalLabels": {
+      "Calories": "Calories",
+      "Steps": "Steps",
+      "Sleep": "Sleep",
+      "Weekly Activity": "Weekly Activity"
+    },
+    "healthGoalTypes": {
+      "CALORIES": "Calories",
+      "STEPS": "Steps",
+      "SLEEP": "Sleep",
+      "ACTIVITY": "Weekly Activity"
+    },
+    "units": {
+      "hrs": "hrs",
+      "min": "min",
+      "kcal": "kcal",
+      "": ""
+    },
+    "updateGoalsTitle": "Update Your Goals",
+    "updateGoalsDescription": "Adjust your daily targets to match your current training phase.",
+    "goalType": "Goal Type",
+    "targetAmount": "Target Amount",
+    "enterValue": "Enter value...",
+    "discard": "Discard",
+    "saveGoal": "Save Goal",
+    "recentMilestones": "Recent Milestone Progress",
+    "goalCategory": "Goal Category",
+    "initialTarget": "Initial Target",
+    "currentResult": "Current Result",
+    "status": "Status",
+    "achieved": "ACHIEVED",
+    "inProgress": "IN PROGRESS",
+    "targetAmountRequired": "Target amount must be provided",
+    "invalidNumber": "Target amount must be a valid number",
+    "sleepValidation": "Sleep target should be between 0.5 and 24 hours",
+    "stepsValidation": "Daily steps target should be between 1 and 100,000",
+    "caloriesValidation": "Daily calorie target should be between 1 and 10,000",
+    "activityValidation": "Weekly activity target should be between 1 and 10,080 minutes (168 hours)"
   }
 }
