@@ -1,13 +1,25 @@
-import { gymPrivateApi } from "../../clients";
+import { healthPrivateApi } from "../../clients";
 
 export interface UserProfileResponse {
-  userId: string;
+  id: string;
   username: string;
   email: string;
-  createdAt: string;
+  birthDate: string;
+  height: number;
+  weight: number;
+  gender: "MALE" | "FEMALE";
+}
+
+export interface UpdateUserMetricsRequest {
+  height: number;
+  weight: number;
 }
 
 export const getUserProfile = async (): Promise<UserProfileResponse> => {
-  const response = await gymPrivateApi.get("/users/profile");
+  const response = await healthPrivateApi.get("/me");
   return response.data;
+};
+
+export const updateUserMetrics = async (request: UpdateUserMetricsRequest) => {
+  await healthPrivateApi.put("/me", request);
 };

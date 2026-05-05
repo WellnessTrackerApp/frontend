@@ -134,6 +134,19 @@
   "memberSince": "Członek od: {{date, date(fmt: d MMMM yyyy)}}",
   "editProfile": "Edytuj profil",
   "changePassword": "Zmień hasło",
+  "physicalMetrics": "Metryki fizyczne",
+  "personalInfo": "Informacje osobiste",
+  "height": "Wzrost",
+  "userWeight": "Waga",
+  "birthDate": "Data urodzenia",
+  "gender": "Płeć",
+  "genders": {
+    "MALE": "Mężczyzna",
+    "FEMALE": "Kobieta"
+  },
+  "editPhysicalMetrics": "Edytuj metryki fizyczne",
+  "physicalMetricsDescription": "Utrzymuj swoje dane dokładne dla precyzyjnego śledzenia",
+  "saveChanges": "Zapisz zmiany",
   "appPreferences": "Preferencje aplikacji",
   "darkMode": "Tryb ciemny",
   "darkModeDescription": "Przyjaźniejszy dla oczu podczas treningu",
@@ -220,7 +233,12 @@
     "confirmPasswordMatchingError": "Potwierdzenie hasła musi być takie samo jak hasło",
     "heightWeightRequiredError": "Wzrost i waga są wymagane",
     "provideAllInformationToAddMeal": "Podaj wszystkie informacje, aby dodać posiłek.",
-    "dietEntryDataNegative": "Kalorie i ilość makroskładników posiłku nie mogą być ujemne."
+    "dietEntryDataNegative": "Kalorie i ilość makroskładników posiłku nie mogą być ujemne.",
+    "userMetricsUpdatedSuccessfully": "Pomyślnie zaktualizowano metryki użytkownika",
+    "userMetricsUpdateFailed": "Nie udało się zaktualizować metryk użytkownika",
+    "heightWeightRequired": "Wzrost i waga muszą być podane",
+    "heightInvalidRange": "Wzrost powinien być między 50 a 300 cm",
+    "weightInvalidRange": "Waga powinna być między 40 a 500 kg"
   },
   "exerciseCategories": {
     "arms": "RAMIONA",
