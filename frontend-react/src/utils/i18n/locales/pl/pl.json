@@ -406,6 +406,7 @@
     "sleepValidation": "Cel snu powinien być między 0,5 a 24 godziny",
     "stepsValidation": "Cel dziennych kroków powinien być między 1 a 100 000",
     "caloriesValidation": "Cel dziennych kalorii powinien być między 1 a 10 000",
-    "activityValidation": "Cel tygodniowej aktywności powinien być między 1 a 10 080 minut (168 godzin)"
+    "activityValidation": "Cel tygodniowej aktywności powinien być między 1 a 10 080 minut (168 godzin)",
+    "failedToSetHealthGoal": "Nie udało się zapisać celu"
   }
 }

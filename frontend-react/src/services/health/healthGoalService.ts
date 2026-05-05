@@ -3,7 +3,7 @@ import { healthPrivateApi } from "../../clients";
 export type HealthGoalType = "SLEEP" | "STEPS" | "CALORIES" | "ACTIVITY";
 
 export interface HealthGoalRequest {
-  healthGoalType: string;
+  healthGoalType: HealthGoalType;
   target: number;
 }
 
@@ -48,7 +48,7 @@ export const getGoalsProgress = async (): Promise<
 
 export const getSpecificGoalProgress = async (
   healthGoalType: HealthGoalType,
-) => {
+): Promise<HealthGoalProgressResponse> => {
   const response = await healthPrivateApi.get(
     `/goals/progress/${healthGoalType}`,
   );

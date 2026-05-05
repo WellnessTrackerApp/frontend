@@ -75,7 +75,9 @@ const GoalsPage = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["healthGoalsProgress"] });
     },
-    onError: () => {},
+    onError: () => {
+      toast.error(t("goalsPage.failedToSetHealthGoal"));
+    },
   });
 
   const {
@@ -95,7 +97,7 @@ const GoalsPage = () => {
   ): string | null => {
     switch (type) {
       case "SLEEP":
-        if (value <= 0 || value > 24) {
+        if (value < 0.5 || value > 24) {
           return t("goalsPage.sleepValidation");
         }
         break;
@@ -193,9 +195,13 @@ const GoalsPage = () => {
             healthGoalsProgress.map((healthGoalProgress) => {
               const config =
                 HEALTH_GOAL_CONFIG[healthGoalProgress.healthGoalType];
-              const percentage = Math.round(
-                (healthGoalProgress.actual / healthGoalProgress.target) * 100,
-              );
+              const percentage =
+                healthGoalProgress.target > 0
+                  ? Math.round(
+                      (healthGoalProgress.actual / healthGoalProgress.target) *
+                        100,
+                    )
+                  : 0;
 
               return (
                 <div

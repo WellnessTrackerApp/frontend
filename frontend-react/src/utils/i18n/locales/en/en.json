@@ -366,6 +366,7 @@
     "sleepValidation": "Sleep target should be between 0.5 and 24 hours",
     "stepsValidation": "Daily steps target should be between 1 and 100,000",
     "caloriesValidation": "Daily calorie target should be between 1 and 10,000",
-    "activityValidation": "Weekly activity target should be between 1 and 10,080 minutes (168 hours)"
+    "activityValidation": "Weekly activity target should be between 1 and 10,080 minutes (168 hours)",
+    "failedToSetHealthGoal": "Failed to set health goal"
   }
 }
