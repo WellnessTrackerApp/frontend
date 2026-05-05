@@ -1,4 +1,4 @@
-import { healthPrivateApi } from "../../clients";
+import { gymPrivateApi, healthPrivateApi } from "../../clients";
 
 export interface UserProfileResponse {
   id: string;
@@ -18,6 +18,10 @@ export interface UpdateUserMetricsRequest {
 export const getUserProfile = async (): Promise<UserProfileResponse> => {
   const response = await healthPrivateApi.get("/me");
   return response.data;
+};
+
+export const gymDeleteUser = async () => {
+  await gymPrivateApi.delete("/users/profile");
 };
 
 export const updateUserMetrics = async (request: UpdateUserMetricsRequest) => {

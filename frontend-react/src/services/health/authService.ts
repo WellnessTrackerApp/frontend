@@ -1,6 +1,7 @@
 import { healthPublicApi } from "../../clients";
 
 export interface SignUpRequest {
+  id: string;
   username: string;
   email: string;
   password: string;
