@@ -29,7 +29,6 @@ import {
 } from "../services/gym/authService";
 import type { SignUpRequest as HealthSignUpRequest } from "../services/health/authService";
 import { healthSignUp } from "../services/health/authService";
-import { healthDeleteUser } from "../services/health/userService";
 import { type ErrorResponse } from "../types/ApiResponse";
 import { type RegisterLoginForm } from "../types/AuthForms";
 
