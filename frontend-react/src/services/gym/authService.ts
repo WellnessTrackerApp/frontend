@@ -28,8 +28,8 @@ export const signIn = async (data: SignInRequest): Promise<SignInResponse> => {
 
 export const gymSignUp = async (
   data: SignUpRequest,
-): Promise<GeneralResponse> => {
-  const response = await gymPublicApi.post<GeneralResponse>(
+): Promise<string> => {
+  const response = await gymPublicApi.post<string>(
     "/auth/sign-up",
     data,
   );
