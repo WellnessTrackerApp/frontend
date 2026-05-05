@@ -24,6 +24,7 @@
   "navPlans": "Plany",
   "navProgress": "Postępy",
   "navWellness": "Zdrowie",
+  "navGoals": "Cele",
   "navSettings": "Ustawienia",
   "navLogout": "Wyloguj",
   "fetchingWorkoutsFailed": "Nie udało się pobrać treningów",
@@ -356,5 +357,56 @@
       "ACTIVITY": "Aktywność"
     },
     "errorLoadingDietEntries": "Nie udało się załadować historii posiłków"
+  },
+  "errorPage": {
+    "title": "Wygląda na to, że zabłądziłeś.",
+    "description": "Szukana strona nie istnieje lub została przeniesiona w inne miejsce.",
+    "backToDashboard": "Wróć do strony głównej"
+  },
+  "goalsPage": {
+    "title": "Cele zdrowotne",
+    "description": "Śledzenie swoich dziennych celów i ustalanie nowych.",
+    "loadingGoals": "Ładowanie celów zdrowia",
+    "goalsError": "Błąd celów zdrowia",
+    "noGoalsFound": "Nie zdefiniowano żadnych celów zdrowia",
+    "healthGoalLabels": {
+      "Calories": "Kalorie",
+      "Steps": "Kroki",
+      "Sleep": "Sen",
+      "Weekly Activity": "Tygodniowa Aktywność"
+    },
+    "healthGoalTypes": {
+      "CALORIES": "Kalorie",
+      "STEPS": "Kroki",
+      "SLEEP": "Sen",
+      "ACTIVITY": "Tygodniowa Aktywność"
+    },
+    "units": {
+      "hrs": "godz",
+      "min": "min",
+      "kcal": "kcal",
+      "": ""
+    },
+    "updateGoalsTitle": "Zaktualizuj swoje cele",
+    "updateGoalsDescription": "Dostosuj swoje dzienne cele do aktualnego etapu treningu.",
+    "goalType": "Typ celu",
+    "targetAmount": "Wartość docelowa",
+    "enterValue": "Wprowadź wartość...",
+    "discard": "Anuluj",
+    "saveGoal": "Zapisz cel",
+    "recentMilestones": "Ostatnie postępy",
+    "goalCategory": "Kategoria celu",
+    "initialTarget": "Cel wyjściowy",
+    "currentResult": "Bieżący wynik",
+    "status": "Status",
+    "achieved": "OSIĄGNIĘTY",
+    "inProgress": "W TRAKCIE",
+    "targetAmountRequired": "Wartość docelowa musi być podana",
+    "invalidNumber": "Wartość docelowa musi być prawidłową liczbą",
+    "sleepValidation": "Cel snu powinien być między 0,5 a 24 godziny",
+    "stepsValidation": "Cel dziennych kroków powinien być między 1 a 100 000",
+    "caloriesValidation": "Cel dziennych kalorii powinien być między 1 a 10 000",
+    "activityValidation": "Cel tygodniowej aktywności powinien być między 1 a 10 080 minut (168 godzin)",
+    "failedToSetHealthGoal": "Nie udało się zapisać celu"
   }
 }
